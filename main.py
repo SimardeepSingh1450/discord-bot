@@ -1,3 +1,4 @@
+#imported libraries
 import os
 import discord
 from better_profanity import profanity
@@ -30,6 +31,8 @@ async def on_message(message):
     #profanity message check and removing the message
     if profanity.contains_profanity(message.content):
         await message.delete()
+        #censoring the users wrong words only and sending the message
+        await message.channel.send(profanity.censor(message.content,'#'))
         await message.channel.send(f'You cannot use that word here @{message.author}')
 
 
